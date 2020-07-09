@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -32,6 +36,38 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         btnUpload = findViewById(R.id.btnUpload);
         ivPostImage = findViewById(R.id.ivPostImage);
+
+        //queryPosts();
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String description = etDescription.getText().toString();
+                if (description.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "description can't be empty", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                savePost(description, currentUser);
+            }
+        });
+    }
+
+    private void savePost(String description, ParseUser currentUser) {
+        Post post = new Post();
+        post.setDescription(description);
+        post.setUser(currentUser);
+        post.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Error while saving", e);
+                    Toast.makeText(MainActivity.this, "Error saving post", Toast.LENGTH_LONG).show();;
+                }
+                Log.i(TAG, "post save was successful");
+                etDescription.setText("");
+            }
+        });
     }
 
     private void queryPosts() {
