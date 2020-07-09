@@ -46,4 +46,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="235dp" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="Sign Up" />
 </RelativeLayout>
