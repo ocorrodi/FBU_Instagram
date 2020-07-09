@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.fbu_instagram.fragments.ComposeFragment;
+import com.example.fbu_instagram.fragments.PostsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -34,6 +37,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
+    final FragmentManager fragmentManager = getSupportFragmentManager();
 
     private BottomNavigationView bottomNavigationView;
 
@@ -51,18 +55,25 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_compose:
                         // do something here
+                        fragment = new ComposeFragment();
                         break;
                     case R.id.action_home:
                         // do something here
-                         break;
+                        fragment = new PostsFragment();
+                        break;
                     case R.id.action_profile:
                         // do something here
+                        fragment = new ComposeFragment();
                         break;
-                    default: break;
+                    default:
+                        fragment = new ComposeFragment();
+                        break;
                 }
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
         });
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
 }
