@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView ivPostImage;
     private File photoFile;
     public String photoFileName = "photo.jpg";
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         btnUpload = findViewById(R.id.btnUpload);
         ivPostImage = findViewById(R.id.ivPostImage);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //queryPosts();
 
