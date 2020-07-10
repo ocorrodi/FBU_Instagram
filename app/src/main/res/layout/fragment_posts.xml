@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="8dp"
+tools:context=".fragments.PostsFragment">
+
+<!-- TODO: Update blank fragment layout -->
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rvPosts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
-    tools:context=".fragments.PostsFragment">
+    android:padding="8dp" />
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPosts"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp" />
 
 </FrameLayout>
