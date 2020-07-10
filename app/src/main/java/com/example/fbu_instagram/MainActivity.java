@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fbu_instagram.fragments.ComposeFragment;
+import com.example.fbu_instagram.fragments.PostDetailFragment;
 import com.example.fbu_instagram.fragments.PostsFragment;
 import com.example.fbu_instagram.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +33,8 @@ import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import org.parceler.Parcels;
 
 import java.io.File;
 import java.util.List;
@@ -47,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getIntent().hasExtra("post")) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("post", getIntent().getParcelableExtra("post"));
+            PostDetailFragment fragobj = new PostDetailFragment();
+            fragobj.setArguments(bundle);
+            fragmentManager.beginTransaction().replace(R.id.flContainer, fragobj).commit();
+            return;
+        }
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
