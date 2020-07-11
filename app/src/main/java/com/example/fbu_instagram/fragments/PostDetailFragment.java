@@ -1,20 +1,24 @@
 package com.example.fbu_instagram.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.fbu_instagram.PostDetail;
 import com.example.fbu_instagram.R;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
@@ -29,6 +33,8 @@ public class PostDetailFragment extends Fragment {
     private TextView tvUsername;
     private TextView tvTime;
     private ImageView ivImage;
+    private ImageButton imageButton;
+    final FragmentManager fragmentManager = getFragmentManager();
 
     private PostDetail post;
 
@@ -65,11 +71,24 @@ public class PostDetailFragment extends Fragment {
         tvCaption = view.findViewById(R.id.tvCaption);
         ivImage = view.findViewById(R.id.ivImage);
         tvTime = view.findViewById(R.id.tvTime);
+        imageButton = view.findViewById(R.id.ibProfile);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("user", Parcels.wrap(post.getUser()));
+                ProfileFragment fragobj = new ProfileFragment();
+                fragobj.setArguments(bundle);
+                getFragmentManager().beginTransaction().replace(R.id.flContainer, fragobj).commit();
+            }
+        });
 
         tvTime.setText(post.getTime());
         if (post.getImage() != "") {
             Glide.with(getContext()).load(post.getImage()).into(ivImage);
         }
+        Glide.with(getContext()).load(post.getProfile()).into(imageButton);
         tvUsername.setText(post.getUsername());
         tvCaption.setText(post.getCaption());
     }

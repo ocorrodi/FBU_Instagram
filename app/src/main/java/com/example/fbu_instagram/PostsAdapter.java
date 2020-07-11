@@ -54,6 +54,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (post.getProfilePic() != null) {
                 Glide.with(context).load(post.getProfilePic().getUrl()).into(ivProfilePic);
             }
+          /*  else {
+                Glide.with(context).load(post.getImage()).into(ivProfilePic);
+            }*/
         }
 
         @Override
@@ -65,10 +68,10 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 Post post = posts.get(position);
                 PostDetail newPost;
                 if (post.getImage() == null) {
-                    newPost = new PostDetail(post.getUser().getUsername(), post.getDescription(), "", post.getCreatedAt().toString());
+                    newPost = new PostDetail(post.getUser().getUsername(), post.getDescription(), "", post.getCreatedAt().toString(), "", post.getUser());
                 }
                 else {
-                    newPost = new PostDetail(post.getUser().getUsername(), post.getDescription(), post.getImage().getUrl(), post.getCreatedAt().toString());
+                    newPost = new PostDetail(post.getUser().getUsername(), post.getDescription(), post.getImage().getUrl(), post.getCreatedAt().toString(), post.getProfilePic().getUrl(), post.getUser());
                 }
                 intent.putExtra("post", Parcels.wrap(newPost));
                 context.startActivity(intent);

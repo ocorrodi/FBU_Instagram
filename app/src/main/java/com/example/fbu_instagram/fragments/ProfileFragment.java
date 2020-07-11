@@ -25,6 +25,8 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class ProfileFragment extends Fragment {
     public static final String TAG = "PostsFragment";
     protected PostsAdapter2 adapter;
     protected List<Post> allPosts;
+    ParseUser user;
 
     public ProfileFragment() {}
 
@@ -43,6 +46,12 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (getArguments().getParcelable("user") != null) {
+            user = Parcels.unwrap(getArguments().getParcelable("user"));
+        }
+        else {
+            user = ParseUser.getCurrentUser();
+        }
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -62,7 +71,7 @@ public class ProfileFragment extends Fragment {
 
         query.include(Post.KEY_USER);
         query.setLimit(20);
-        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Post.KEY_USER, user);
         query.addDescendingOrder(KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Post>() {
             @Override

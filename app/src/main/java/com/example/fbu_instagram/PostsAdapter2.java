@@ -55,10 +55,10 @@ public class PostsAdapter2 extends RecyclerView.Adapter<PostsAdapter2.ViewHolder
                 Post post = posts.get(position);
                 PostDetail newPost;
                 if (post.getImage() == null) {
-                    newPost = new PostDetail(post.getUser().getUsername(), post.getDescription(), "", post.getCreatedAt().toString());
+                    newPost = new PostDetail(post.getUser().getUsername(), post.getDescription(), "", post.getCreatedAt().toString(), post.getProfilePic().getUrl(), post.getUser());
                 }
                 else {
-                    newPost = new PostDetail(post.getUser().getUsername(), post.getDescription(), post.getImage().getUrl(), post.getCreatedAt().toString());
+                    newPost = new PostDetail(post.getUser().getUsername(), post.getDescription(), post.getImage().getUrl(), post.getCreatedAt().toString(), post.getProfilePic().getUrl(), post.getUser());
                 }
                 intent.putExtra("post", Parcels.wrap(newPost));
                 context.startActivity(intent);
