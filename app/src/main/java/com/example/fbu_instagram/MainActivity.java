@@ -1,6 +1,7 @@
 package com.example.fbu_instagram;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -56,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.nav_logo_whiteout);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         if (getIntent().hasExtra("post")) {
             Bundle bundle = new Bundle();
             bundle.putParcelable("post", getIntent().getParcelableExtra("post"));
@@ -83,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_profile:
                         // do something here
                         fragment = new ProfileFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("user", null);
+                        fragment.setArguments(bundle);
                         break;
                     default:
                         fragment = new ComposeFragment();
