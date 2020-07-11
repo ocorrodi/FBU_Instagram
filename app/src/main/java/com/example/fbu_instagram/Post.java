@@ -38,7 +38,4 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 
-    public String getKeyCreatedAt() {
-        return getString(KEY_CREATED_AT);
-    }
 }
