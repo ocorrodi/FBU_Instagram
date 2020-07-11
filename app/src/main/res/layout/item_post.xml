@@ -12,7 +12,7 @@
         android:layout_below="@+id/tvUsername"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:scaleType="centerCrop"
         tools:layout_editor_absoluteX="50dp"
         tools:layout_editor_absoluteY="88dp"
@@ -22,10 +22,10 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
+        android:layout_toEndOf="@+id/ivProfile"
         android:text="TextView"
         tools:layout_editor_absoluteX="66dp"
         tools:layout_editor_absoluteY="258dp" />
@@ -38,4 +38,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="51dp"
+        android:layout_height="49dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
 </RelativeLayout>

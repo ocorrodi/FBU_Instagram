@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.fbu_instagram.MainActivity;
@@ -53,6 +54,7 @@ public class ComposeFragment extends Fragment {
     private File photoFile;
     public String photoFileName = "photo.jpg";
     public static final String TAG = "ComposeFragment";
+    private ProgressBar pb;
 
     public ComposeFragment() {
         // Required empty public constructor
@@ -96,10 +98,13 @@ public class ComposeFragment extends Fragment {
         btnSubmit = view.findViewById(R.id.btnSubmit);
         btnUpload = view.findViewById(R.id.btnUpload);
         ivPostImage = view.findViewById(R.id.ivPostImage);
+        pb = view.findViewById(R.id.pbLoading);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pb.setVisibility(ProgressBar.VISIBLE);
+// run a background job and once complete
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()) {
                     Toast.makeText(getContext(), "description can't be empty", Toast.LENGTH_LONG).show();
@@ -111,6 +116,7 @@ public class ComposeFragment extends Fragment {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFile);
+                pb.setVisibility(ProgressBar.INVISIBLE);
             }
         });
 

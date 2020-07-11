@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fbu_instagram.LoginActivity;
 import com.example.fbu_instagram.Post;
 import com.example.fbu_instagram.PostsAdapter;
+import com.example.fbu_instagram.PostsAdapter2;
 import com.example.fbu_instagram.R;
 import com.example.fbu_instagram.fragments.PostsFragment;
 import com.parse.FindCallback;
@@ -33,7 +34,7 @@ public class ProfileFragment extends Fragment {
 
     RecyclerView rvPosts;
     public static final String TAG = "PostsFragment";
-    protected PostsAdapter adapter;
+    protected PostsAdapter2 adapter;
     protected List<Post> allPosts;
 
     public ProfileFragment() {}
@@ -50,7 +51,7 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvPosts = view.findViewById(R.id.rvPosts);
         allPosts = new ArrayList<>();
-        adapter = new PostsAdapter(getContext(), allPosts);
+        adapter = new PostsAdapter2(getContext(), allPosts);
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new GridLayoutManager(getContext(), 3));
         queryPosts();

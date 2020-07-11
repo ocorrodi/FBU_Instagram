@@ -12,47 +12,37 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.fbu_instagram.fragments.PostDetailFragment;
 
 import org.parceler.Parcels;
 
 import java.util.List;
 
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
+public class PostsAdapter2 extends RecyclerView.Adapter<PostsAdapter2.ViewHolder2> {
 
     private Context context;
     private List<Post> posts;
 
 
-    public PostsAdapter(Context context, List<Post> posts) {
+    public PostsAdapter2(Context context, List<Post> posts) {
         this.context = context;
         this.posts = posts;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private TextView tvUsername;
-        private TextView tvCaption;
         private ImageView ivImage;
-        private ImageView ivProfilePic;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder2(@NonNull View itemView) {
             super(itemView);
-            tvUsername = itemView.findViewById(R.id.tvUsername);
-            tvCaption = itemView.findViewById(R.id.tvCaption);
+
             ivImage = itemView.findViewById(R.id.ivImage);
-            ivProfilePic = itemView.findViewById(R.id.ivProfile);
             itemView.setOnClickListener(this);
         }
 
         public void bind(Post post) {
-            tvCaption.setText(post.getDescription());
-            tvUsername.setText(post.getUser().getUsername());
+
             if (post.getImage() != null) {
                 Glide.with(context).load(post.getImage().getUrl()).into(ivImage);
-            }
-            if (post.getProfilePic() != null) {
-                Glide.with(context).load(post.getProfilePic().getUrl()).into(ivProfilePic);
             }
         }
 
@@ -89,16 +79,17 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
-        return new ViewHolder(view);
+    public ViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_post2, parent, false);
+        return new ViewHolder2(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder2 holder, int position) {
         Post post = posts.get(position);
         holder.bind(post);
     }
+
 
     @Override
     public int getItemCount() {

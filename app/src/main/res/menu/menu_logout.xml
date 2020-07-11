@@ -7,4 +7,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/logout"
         android:title="Logout"
         app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/item_profile_pic"
+        android:title="Add Profile Image" />
 </menu>
