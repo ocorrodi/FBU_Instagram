@@ -43,7 +43,7 @@ Additional stretch stories walkthrough:
 ![App Demo Link](added_features.mp4)
 
 More features:
-![App Demo Link](FBU_Insta_morefeatures.mp4)
+![App Demo Link](FBU_Insta_newfeatures.mp4)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
